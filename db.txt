@@ -1,0 +1,35 @@
+CREATE DATABASE biblioteca;
+USE biblioteca;
+
+-- Creación de la tabla 'libros'
+CREATE TABLE libros (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    imagen VARCHAR(255)
+);
+
+-- Insertar datos en la tabla 'libros'
+INSERT INTO libros (id, nombre, imagen) VALUES
+(1, 'La Biblia', 'ruta/de/la/imagen1'),
+(2, 'Don Quijote de la Mancha', 'ruta/de/la/imagen2'),
+(3, 'Historia de dos ciudades', 'ruta/de/la/imagen3'),
+(4, 'El Señor de los Anillos', 'ruta/de/la/imagen4'),
+(5, 'El Principito', 'ruta/de/la/imagen5');
+
+-- Creación de la tabla 'informacion_libros'
+CREATE TABLE informacion_libros (
+    libro_id INT,
+    autor VARCHAR(255) NOT NULL,
+    fecha_publicacion DATE,
+    editorial VARCHAR(255),
+    PRIMARY KEY (libro_id),
+    FOREIGN KEY (libro_id) REFERENCES libros(id)
+);
+
+-- Insertar datos en la tabla 'informacion_libros'
+INSERT INTO informacion_libros (libro_id, autor, fecha_publicacion, editorial) VALUES
+(1, 'Varios autores', '1454-01-01', 'Diferentes editoriales'),
+(2, 'Miguel de Cervantes', '1605-01-16', 'Francisco de Robles'),
+(3, 'Charles Dickens', '1859-04-30', 'Chapman & Hall'),
+(4, 'J.R.R. Tolkien', '1954-07-29', 'George Allen & Unwin'),
+(5, 'Antoine de Saint-Exupéry', '1943-04-06', 'Reynal & Hitchcock');
